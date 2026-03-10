@@ -9,8 +9,7 @@ plugins {
     alias(libs.plugins.kotlin.compose.compiler)
     alias(libs.plugins.ksp)
     alias(libs.plugins.lsplugin.apksign)
-    alias(libs.plugins.lsplugin.resopt)
-    id("kotlin-parcelize")
+    alias(libs.plugins.lsplugin.resopt)                      id("kotlin-parcelize")
 }
 
 val androidCompileSdkVersion: Int by rootProject.extra
@@ -110,13 +109,13 @@ android {
         targetSdk = androidTargetSdkVersion
         versionCode = managerVersionCode
         versionName = managerVersionName
-        ndk.abiFilters.addAll(arrayOf("arm64-v8a"))
+        ndk.abiFilters.addAll(arrayOf("arm64-v8a", "armeabi-v7a"))
         externalNativeBuild {
             cmake {
                 cppFlags += baseFlags + "-std=c++2b"
                 cFlags += baseFlags + "-std=c2x"
                 arguments += baseArgs
-                abiFilters("arm64-v8a")
+                abiFilters("arm64-v8a", "armeabi-v7a")
             }
         }
         buildConfigField("String", "buildKPV", "\"$kernelPatchVersion\"")
@@ -255,10 +254,10 @@ tasks.getByName("preBuild").dependsOn(
 )
 
 // https://github.com/bbqsrc/cargo-ndk
-// cargo ndk -t arm64-v8a build --release
+// cargo ndk -t arm64-v8a -t armeabi-v7a build --release
 tasks.register<Exec>("cargoBuild") {
     executable("cargo")
-    args("ndk", "-t", "arm64-v8a", "build", "--release")
+    args("ndk", "-t", "arm64-v8a", "-t", "armeabi-v7a", "build", "--release")
     workingDir("${project.rootDir}/apd")
 }
 
@@ -269,9 +268,16 @@ tasks.register<Copy>("buildApd") {
     rename("apd", "libapd.so")
 }
 
+tasks.register<Copy>("buildApdArmeabi") {
+    dependsOn("cargoBuild")
+    from("${project.rootDir}/apd/target/armv7-linux-androideabi/release/apd")
+    into("${project.projectDir}/libs/armeabi-v7a")
+    rename("apd", "libapd.so")
+}
+
 tasks.configureEach {
     if (name == "mergeDebugJniLibFolders" || name == "mergeReleaseJniLibFolders") {
-        dependsOn("buildApd")
+        dependsOn("buildApd", "buildApdArmeabi")
     }
 }
 
@@ -284,6 +290,7 @@ tasks.register<Exec>("cargoClean") {
 tasks.register<Delete>("apdClean") {
     dependsOn("cargoClean")
     delete(file("${project.projectDir}/libs/arm64-v8a/libapd.so"))
+    delete(file("${project.projectDir}/libs/armeabi-v7a/libapd.so"))
 }
 
 tasks.clean {
@@ -340,3 +347,4 @@ dependencies {
 
     compileOnly(libs.cxx)
 }
+
