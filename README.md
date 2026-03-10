@@ -1,34 +1,29 @@
 <div align="center">
-<a href="https://github.com/bmax121/APatch/releases/latest"><img src="https://images.weserv.nl/?url=https://raw.githubusercontent.com/bmax121/APatch/main/app/src/main/ic_launcher-playstore.png&mask=circle" style="width: 128px;" alt="logo"></a>
+<a href="https://github.com/matheusc457/MPatch/releases/latest"><img src="https://images.weserv.nl/?url=https://raw.githubusercontent.com/bmax121/APatch/main/app/src/main/ic_launcher-playstore.png&mask=circle" style="width: 128px;" alt="logo"></a>
 
-<h1 align="center">APatch</h1>
+<h1 align="center">MPatch</h1>
 
-[![Latest Release](https://img.shields.io/github/v/release/bmax121/APatch?label=Release&logo=github)](https://github.com/bmax121/APatch/releases/latest)
-[![Nightly Release](https://img.shields.io/badge/Nightly%20release-gray?logo=hackthebox&logoColor=fff)](https://nightly.link/bmax121/APatch/workflows/build/main/APatch)
-[![Weblate](https://img.shields.io/badge/Localization-Weblate-teal?logo=weblate)](https://hosted.weblate.org/engage/APatch)
-[![Channel](https://img.shields.io/badge/Follow-Telegram-blue.svg?logo=telegram)](https://t.me/APatchGroup)
-[![GitHub License](https://img.shields.io/github/license/bmax121/APatch?logo=gnu)](/LICENSE)
+[![Latest Release](https://img.shields.io/github/v/release/matheusc457/MPatch?label=Release&logo=github)](https://github.com/matheusc457/MPatch/releases/latest)
+[![GitHub License](https://img.shields.io/github/license/matheusc457/MPatch?logo=gnu)](/LICENSE)
 
 </div>
 
-The patching of Android kernel and Android system.
+The patching of Android kernel and Android system, now with ARMv7 support.
 
-- A new kernel-based root solution for Android devices.
+- A fork of [APatch](https://github.com/bmax121/APatch) focused on bringing support to **ARMv7 (armeabi-v7a)** devices.
 - APM: Support for modules similar to Magisk.
 - KPM: Support for modules that allow you to inject any code into the kernel (Provides kernel function `inline-hook` and `syscall-table-hook`).
-- APatch relies on [KernelPatch](https://github.com/bmax121/KernelPatch/).
-- The APatch UI and the APModule source code have been derived and modified from [KernelSU](https://github.com/tiann/KernelSU).
+- MPatch relies on [KernelPatch](https://github.com/bmax121/KernelPatch/).
+- The MPatch UI and the APModule source code have been derived and modified from [KernelSU](https://github.com/tiann/KernelSU).
 
-[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
-     alt="Get it on F-Droid"
-     height="80">](https://f-droid.org/packages/me.bmax.apatch/)
-
-Or download the latest APK from the [Releases Section](https://github.com/bmax121/APatch/releases/latest).
+Or download the latest APK from the [Releases Section](https://github.com/matheusc457/MPatch/releases/latest).
 
 ## Supported Versions
 
-- Only supports the ARM64 architecture.
+- Supports **ARM64** and **ARMv7 (armeabi-v7a)** architectures.
 - Only supports Android kernel versions 3.18 - 6.12
+
+> ARMv7 support is currently under active development. Contributions are welcome!
 
 Support for Samsung devices with security protection: Planned
 
@@ -46,43 +41,29 @@ The **SuperKey** has higher privileges than root access.
 Weak or compromised keys can lead to unauthorized control of your device.  
 It is critical to use robust keys and safeguard them from exposure to maintain the security of your device.
 
-## Translation
+## Roadmap
 
-To help translate APatch or improve existing translations, please use [Weblate](https://hosted.weblate.org/engage/apatch/). PR of APatch translation is no longer accepted, because it will conflict with Weblate.
-
-<div align="center">
-
-[![Translation Status](https://hosted.weblate.org/widget/APatch/open-graph.png)](https://hosted.weblate.org/engage/APatch/)
-
-</div>
+- [x] Fork APatch
+- [ ] Add `armeabi-v7a` ABI to manager native builds
+- [ ] Port kpatch stubs to Thumb-2/ARM32
+- [ ] Full ARMv7 kernel patching support
+- [ ] Testing on ARMv7 devices
 
 ## Get Help
 
 ### Usage
 
-For usage, please refer to [our official documentation](https://apatch.dev).  
-It's worth noting that the documentation is currently not quite complete, and the content may change at any time.  
-Furthermore, we need more volunteers to [contribute to the documentation](https://github.com/AndroidPatch/APatchDocs) in other languages.
-
-### Updates
-
-- Telegram Channel: [@APatchUpdates](https://t.me/APatchChannel)
-
-### Discussions
-
-- Telegram Group: [@APatchDiscussions(EN/CN)](https://t.me/Apatch_discuss)
-- Telegram Group: [中文](https://t.me/APatch_CN_Group)
-
-### More Information
-
-- [Documents](docs/)
+For usage, please refer to [APatch's official documentation](https://apatch.dev) as a reference.  
+MPatch-specific documentation is coming soon.
 
 ## Credits
 
+- [APatch](https://github.com/bmax121/APatch): The upstream project this fork is based on.
 - [KernelPatch](https://github.com/bmax121/KernelPatch/): The core.
 - [Magisk](https://github.com/topjohnwu/Magisk): magiskpolicy.
 - [KernelSU](https://github.com/tiann/KernelSU): App UI, and Magisk module like support.
 
 ## License
 
-APatch is licensed under the GNU General Public License v3 [GPL-3](http://www.gnu.org/copyleft/gpl.html).
+MPatch is licensed under the GNU General Public License v3 [GPL-3](http://www.gnu.org/copyleft/gpl.html).
+
