@@ -137,7 +137,7 @@ pub fn switch_cgroups() {
 
 #[cfg(any(target_os = "linux", target_os = "android"))]
 pub fn umask(mask: u32) {
-    unsafe { libc::umask(mask) };
+    unsafe { libc::umask(mask as _) };
 }
 
 #[cfg(not(any(target_os = "linux", target_os = "android")))]

@@ -9,7 +9,8 @@ plugins {
     alias(libs.plugins.kotlin.compose.compiler)
     alias(libs.plugins.ksp)
     alias(libs.plugins.lsplugin.apksign)
-    alias(libs.plugins.lsplugin.resopt)                      id("kotlin-parcelize")
+    alias(libs.plugins.lsplugin.resopt)
+    id("kotlin-parcelize")
 }
 
 val androidCompileSdkVersion: Int by rootProject.extra
@@ -257,7 +258,7 @@ tasks.getByName("preBuild").dependsOn(
 // cargo ndk -t arm64-v8a -t armeabi-v7a build --release
 tasks.register<Exec>("cargoBuild") {
     executable("cargo")
-    args("ndk", "-t", "arm64-v8a", "-t", "armeabi-v7a", "build", "--release")
+    args("ndk", "-t", "arm64-v8a", "-t", "armeabi-v7a", "--platform", "24", "build", "--release")
     workingDir("${project.rootDir}/apd")
 }
 

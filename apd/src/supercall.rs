@@ -45,7 +45,7 @@ struct SuProfile {
 
 fn ver_and_cmd(cmd: c_long) -> c_long {
     let version_code: u32 = ((MAJOR << 16) + (MINOR << 8) + PATCH).try_into().unwrap();
-    ((version_code as c_long) << 32) | (0x1158 << 16) | (cmd & 0xFFFF)
+    ((version_code as i64) << 32) as c_long | (0x1158 << 16) | (cmd & 0xFFFF)
 }
 
 fn sc_su_revoke_uid(key: &CStr, uid: uid_t) -> c_long {
