@@ -248,7 +248,8 @@ class APApplication : Application(), Thread.UncaughtExceptionHandler {
         apApp = this
 
         val isArm64 = Build.SUPPORTED_ABIS.any { it == "arm64-v8a" }
-        if (!isArm64) {
+        val isArm32 = Build.SUPPORTED_ABIS.any { it == "armeabi-v7a" }
+        if (!isArm64 && !isArm32) {
             Toast.makeText(applicationContext, "Unsupported architecture!", Toast.LENGTH_LONG)
                 .show()
             Thread.sleep(5000)
