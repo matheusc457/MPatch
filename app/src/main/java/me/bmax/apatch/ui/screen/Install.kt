@@ -105,7 +105,7 @@ fun InstallScreen(navigator: DestinationsNavigator, uri: Uri, type: MODULE_TYPE)
             },
             dismissButton = {
                 OutlinedButton(onClick = {
-                    uriHandler.openUri("https://apatch.dev/meta-module.html")
+                    uriHandler.openUri("https://github.com/matheusc457/MPatch")
                 }) {
                     Text(text = stringResource(id = R.string.learn_more))
                 }

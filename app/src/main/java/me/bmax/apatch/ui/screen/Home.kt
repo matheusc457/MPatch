@@ -957,7 +957,7 @@ fun LearnMoreCard() {
             modifier = Modifier
                 .fillMaxWidth()
                 .clickable {
-                    uriHandler.openUri("https://apatch.dev")
+                    uriHandler.openUri("https://github.com/matheusc457/MPatch")
                 }
                 .padding(24.dp), verticalAlignment = Alignment.CenterVertically) {
             Column {
