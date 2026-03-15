@@ -71,8 +71,8 @@ android {
             }
         }
         release {
-            isMinifyEnabled = true
-            isShrinkResources = true
+            isMinifyEnabled = false
+            isShrinkResources = false
             isDebuggable = false
             multiDexEnabled = true
             vcsInfo.include = false

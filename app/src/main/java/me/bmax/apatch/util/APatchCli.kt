@@ -421,6 +421,7 @@ private fun validateSignature(signatureBytes: ByteArray?, validSignature: String
     signatureBytes ?: return false
     val digest = MessageDigest.getInstance("SHA-256")
     val signatureHash = Base64.encodeToString(digest.digest(signatureBytes), Base64.NO_WRAP)
+    android.util.Log.d("MPatchSig", "Hash: $signatureHash")
     return signatureHash == validSignature
 }
 
@@ -429,7 +430,7 @@ fun verifyAppSignature(validSignature: String): Boolean {
     val apkSignature = signatureFromAPK(context)
     val apiSignature = signatureFromAPI(context)
 
-    return validateSignature(apiSignature, validSignature) && validateSignature(
+    return validateSignature(apiSignature, validSignature) || validateSignature(
         apkSignature,
         validSignature
     )
